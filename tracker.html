@@ -63,42 +63,6 @@
 			div.innerHTML += "....checking again with timeout  =  " + options.timeout ;
 		}
 
-		function displayLocationAlternate(coords) {
-		  var myLocation = {
-		    lat: coords.latitude,
-		    lng: coords.longitude
-		  };
-
-		  var options = {
-		    zoom: 3,
-		    center: myLocation,
-		    mapTypeId: google.maps.MapTypeId.ROADMAP
-		  };
-
-		  var myDiv = document.getElementById('map');
-
-		  map = new google.maps.Map(myDiv, options);
-
-		  var markerOption = {
-		    position: myLocation,
-		    map: map,
-		    title: "this is custom map"
-		  };
-
-		  var contentString = '<h1>The marker</h1>' + '<br>' + '<p>This section can contain any custom typed text and thus provide the info upon clicking the marker displayed on the map.<p>';
-
-		  var infoWindow = new google.maps.InfoWindow({
-		    content: contentString
-		  });
-
-		  var marker = new google.maps.Marker(markerOption);
-
-		  marker.addListener('click', function() {
-		    infoWindow.open(map, marker);
-		  });
-		}
-
-
 		function displayLocation (position) {
 			var longitude = position.coords.longitude;
 			var latitude = position.coords.latitude;
@@ -113,7 +77,6 @@
 			distance.innerHTML = " You are " + km + " km away from wickedlySmart headquarter" ; 
 			if (map == null) {
 				showMap(position.coords);	
-				displayLocationAlternate(position.coords);
 			}else {
 				scrollMapToPosition(position.coords);
 			}
@@ -121,7 +84,6 @@
 			var content = " you are here: " + position.coords.latitude + "," + position.coords.longitude ;
 			var googleLatAndLong = new google.maps.LatLng (position.coords.latitude , position.coords.longitude);
 			addMarker(map ,googleLatAndLong , title , content ) ;
-			displayLocationAlternate(position.coords);
 		} 
 
 		function computeDistance(startCoords , destCoords){
@@ -175,15 +137,15 @@
 
 			var indoWindow = new google.maps.InfoWindow(infoWindowOptions);
 				google.maps.event.addListener(marker , 'click' , function(){infoWindow.open(map);});
-		}
+			}
 
-		function scrollMapToPosition(coords) {
-			var latitude = coords.latitude ;
-			var longitude = coords. longitude ;
-			var latLong = new google.maps.LatLng(latitude, longitude) ;
-			map.panTo (latLong);
-			addMarker(map, latLong , "your new location", "you moved to " + latitude + ", " + longitude);
-		}
+			function scrollMapToPosition(coords) {
+				var latitude = coords.latitude ;
+				var longitude = coords. longitude ;
+				var latLong = new google.maps.LatLng(latitude, longitude) ;
+				map.panTo (latLong);
+				addMarker(map, latLong , "your new location", "you moved to " + latitude + ", " + longitude);
+			}
 		</script>
 	</head>
 <body>
