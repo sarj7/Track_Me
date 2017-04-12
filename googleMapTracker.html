@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>google map tracker</title>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ8WUQHz0CDxb8HOp2DF50iPiQLUWRbUg"
+    async defer></script>
+  <script type="text/javascript">
+  	window.onload = showMap;
+
+		var map;
+
+		function showMap(myLocation) {
+		  var myLocation = {
+		    lat: 	28.644800,
+		    lng: 77.216721
+		  };
+
+		  var options = {
+		    zoom: 3,
+		    center: myLocation,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  };
+
+		  var myDiv = document.getElementById('map');
+
+		  map = new google.maps.Map(myDiv, options);
+
+		  var markerOption = {
+		    position: myLocation,
+		    map: map,
+		    title: "this is custom map"
+		  };
+
+		  var contentString = '<h1>New Delhi</h1>' + '<br>' + '<p>New Delhi is  a lively city with around the clock availability of product and services. Peoples are friendly and nice. Known for its rich cultural heritage and multitude of religious beliefs.<p>';
+
+		  var infoWindow = new google.maps.InfoWindow({
+		    content: contentString
+		  });
+
+		  var marker = new google.maps.Marker(markerOption);
+
+		  marker.addListener('click', function() {
+		    infoWindow.open(map, marker);
+		  });
+		}
+
+  </script>
+  <style type="text/css">
+  	#map {
+		  height: 400px;
+		  width: 100%;
+		}
+  </style>
+</head>
+<body>
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>
+</body>
+</html>
