@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mighty Gumball(JSON)</title>
+	<script type="text/javascript">
+		var url = "https://someserver.com/data.json";
+
+		var request = new XMLHttpRequest();
+
+		request.open("GET" , url );
+
+		request.onload = function(){
+			if (request.status == 200) {
+				alert(request.responseText) ;
+			}
+		};
+
+		request.send(null);
+
+	</script>
+</head>
+<body>
+<center>
+	<h1>Mighty Gumball Sales</h1>
+	<div id="sales">
+		
+	</div>
+</center>
+</body>
+</html>
